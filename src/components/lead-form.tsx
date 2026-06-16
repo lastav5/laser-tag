@@ -1,5 +1,6 @@
 "use client";
 
+import { Send } from "lucide-react";
 import { startTransition, useState } from "react";
 import { eventTypes, leadSchema, type LeadInput } from "@/lib/lead-schema";
 
@@ -105,124 +106,130 @@ export function LeadForm() {
   }
 
   const inputClassName =
-    "w-full rounded-lg border border-white/10 bg-[#0b1120]/90 px-4 py-3 text-base text-white outline-none placeholder:text-white/28 focus:border-[var(--line-strong)] focus:bg-[#101728]";
+    "w-full rounded-lg border border-[var(--outline-variant)] bg-[var(--background)] px-4 py-4 text-right text-[var(--foreground)] outline-none placeholder:text-white/25 focus:border-[var(--primary)] focus:ring-0";
 
   return (
-    <div className="glass-panel rounded-lg p-7 lg:p-8">
-      <form onSubmit={handleSubmit} className="space-y-5">
-        <div className="grid gap-5 md:grid-cols-2">
-          <Field
-            id="name"
-            label="שם מלא"
-            error={fieldErrors.name}
-            input={
-              <input
-                id="name"
-                name="name"
-                autoComplete="name"
-                value={formData.name}
-                onChange={(event) => setField("name", event.target.value)}
-                className={inputClassName}
-                placeholder="איך קוראים לכם?"
-              />
-            }
-          />
+    <div className="mx-auto max-w-4xl rounded-2xl border border-[var(--outline-variant)] bg-[rgba(32,31,31,0.6)] p-8 shadow-2xl backdrop-blur-xl md:p-12">
+      <div className="mb-10 text-center">
+        <h2 className="mb-2 text-4xl font-extrabold uppercase tracking-tight text-[var(--primary)]">
+          תאריך פנוי מחכה לכם!
+        </h2>
+        <p className="text-lg text-white/72">
+          השאירו פרטים ונחזור אליכם מיד לבדיקת זמינות
+        </p>
+      </div>
 
-          <Field
-            id="phone"
-            label="טלפון"
-            error={fieldErrors.phone}
-            input={
-              <input
-                id="phone"
-                name="phone"
-                autoComplete="tel"
-                inputMode="tel"
-                value={formData.phone}
-                onChange={(event) => setField("phone", event.target.value)}
-                className={inputClassName}
-                placeholder="050-0000000"
-              />
-            }
-          />
-
-          <Field
-            id="email"
-            label="אימייל"
-            error={fieldErrors.email}
-            input={
-              <input
-                id="email"
-                name="email"
-                autoComplete="email"
-                value={formData.email}
-                onChange={(event) => setField("email", event.target.value)}
-                className={inputClassName}
-                placeholder="name@example.com"
-              />
-            }
-          />
-
-          <Field
-            id="eventType"
-            label="סוג אירוע"
-            error={fieldErrors.eventType}
-            input={
-              <select
-                id="eventType"
-                name="eventType"
-                value={formData.eventType}
-                onChange={(event) =>
-                  setField("eventType", event.target.value as LeadInput["eventType"])
-                }
-                className={inputClassName}
-              >
-                {eventTypes.map((option) => (
-                  <option key={option} value={option} className="bg-[#0b1120]">
-                    {option}
-                  </option>
-                ))}
-              </select>
-            }
-          />
-        </div>
-
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <Field
-          id="message"
-          label="ספרו לנו בקצרה על האירוע"
-          error={fieldErrors.message}
+          id="name"
+          label="שם מלא"
+          error={fieldErrors.name}
           input={
-            <textarea
-              id="message"
-              name="message"
-              rows={5}
-              value={formData.message}
-              onChange={(event) => setField("message", event.target.value)}
-              className={`${inputClassName} resize-none`}
-              placeholder="תאריך מבוקש, גילאים, כמות ילדים, אם חשוב לכם חדר פרטי או חבילת יום הולדת מלאה..."
+            <input
+              id="name"
+              name="name"
+              autoComplete="name"
+              value={formData.name}
+              onChange={(event) => setField("name", event.target.value)}
+              className={inputClassName}
+              placeholder="הכנס את שמך"
             />
           }
         />
 
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm leading-6 text-white/52">
-            בלחיצה על שליחה אתם מאשרים לנו לחזור אליכם בקשר לבקשה.
-          </p>
+        <Field
+          id="phone"
+          label="טלפון"
+          error={fieldErrors.phone}
+          input={
+            <input
+              id="phone"
+              name="phone"
+              autoComplete="tel"
+              inputMode="tel"
+              value={formData.phone}
+              onChange={(event) => setField("phone", event.target.value)}
+              className={inputClassName}
+              placeholder="הכנס מספר טלפון"
+            />
+          }
+        />
+
+        <Field
+          id="email"
+          label="אימייל"
+          error={fieldErrors.email}
+          input={
+            <input
+              id="email"
+              name="email"
+              autoComplete="email"
+              value={formData.email}
+              onChange={(event) => setField("email", event.target.value)}
+              className={inputClassName}
+              placeholder="הכנס כתובת אימייל"
+            />
+          }
+        />
+
+        <Field
+          id="eventType"
+          label="סוג אירוע"
+          error={fieldErrors.eventType}
+          input={
+            <select
+              id="eventType"
+              name="eventType"
+              value={formData.eventType}
+              onChange={(event) =>
+                setField("eventType", event.target.value as LeadInput["eventType"])
+              }
+              className={inputClassName}
+            >
+              {eventTypes.map((option) => (
+                <option key={option} value={option} className="bg-[var(--background)]">
+                  {option}
+                </option>
+              ))}
+            </select>
+          }
+        />
+
+        <Field
+          id="message"
+          label="פרטים נוספים"
+          error={fieldErrors.message}
+          className="md:col-span-2"
+          input={
+            <textarea
+              id="message"
+              name="message"
+              rows={4}
+              value={formData.message}
+              onChange={(event) => setField("message", event.target.value)}
+              className={`${inputClassName} resize-none`}
+              placeholder="ספרו לנו על מספר המשתתפים, מיקום האירוע או כל דבר חשוב נוסף"
+            />
+          }
+        />
+
+        <div className="md:col-span-2 pt-4">
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex items-center justify-center rounded-full bg-[var(--neon-blue)] px-6 py-3 text-base font-medium text-[#04111f] shadow-[0_14px_36px_rgba(84,187,255,0.22)] disabled:cursor-not-allowed disabled:opacity-55 hover:translate-y-[-1px] hover:bg-[#7fd1ff]"
+            className="neon-glow-green flex w-full items-center justify-center gap-3 rounded-lg bg-[var(--primary)] py-5 text-xl font-black text-[var(--primary-dark)] transition-all hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {isSubmitting ? "שולחים..." : "שליחת ליד"}
+            <Send className="h-5 w-5" />
+            {isSubmitting ? "שולחים..." : "שלחו עכשיו"}
           </button>
         </div>
 
         {status.message ? (
           <div
-            className={`rounded-lg border px-4 py-3 text-sm leading-6 ${
+            className={`md:col-span-2 rounded-lg border px-4 py-3 text-sm leading-6 ${
               status.tone === "success"
-                ? "border-emerald-400/30 bg-emerald-500/10 text-emerald-100"
-                : "border-rose-400/30 bg-rose-500/10 text-rose-100"
+                ? "border-[var(--primary)] bg-[rgba(189,245,0,0.1)] text-[var(--foreground)]"
+                : "border-[var(--accent)] bg-[rgba(196,28,55,0.12)] text-[var(--foreground)]"
             }`}
           >
             {status.message}
@@ -238,19 +245,24 @@ function Field({
   label,
   error,
   input,
+  className = "",
 }: {
   id: string;
   label: string;
   error?: string;
   input: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <div className="space-y-2">
-      <label htmlFor={id} className="block text-sm font-medium text-white/86">
+    <div className={`space-y-1 ${className}`}>
+      <label
+        htmlFor={id}
+        className="mr-2 block text-[10px] font-bold uppercase tracking-[0.22em] text-white/58"
+      >
         {label}
       </label>
       {input}
-      {error ? <p className="text-sm text-rose-200">{error}</p> : null}
+      {error ? <p className="text-sm text-rose-300">{error}</p> : null}
     </div>
   );
 }

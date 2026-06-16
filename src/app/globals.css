@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #06070d;
-  --foreground: #edf2ff;
-  --surface: rgba(13, 17, 30, 0.78);
-  --surface-strong: rgba(18, 23, 39, 0.96);
-  --line: rgba(162, 187, 255, 0.16);
-  --line-strong: rgba(109, 170, 255, 0.32);
-  --neon-blue: #54bbff;
-  --neon-violet: #a56dff;
-  --neon-teal: #6ef7e6;
+  --background: #131313;
+  --foreground: #e5e2e1;
+  --surface: #1c1b1b;
+  --surface-2: #201f1f;
+  --surface-3: #2a2a2a;
+  --surface-4: #353534;
+  --outline: #8d9479;
+  --outline-variant: #434933;
+  --primary: #bdf500;
+  --primary-dark: #151f00;
+  --secondary: #feb700;
+  --accent: #c41c37;
 }
 
 @theme inline {
@@ -32,27 +35,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), sans-serif;
   min-height: 100vh;
-  background-image:
-    radial-gradient(circle at top, rgba(54, 86, 191, 0.34), transparent 36%),
-    linear-gradient(180deg, #090b14 0%, #06070d 32%, #070915 100%);
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(circle at center, black 42%, transparent 100%);
-  opacity: 0.28;
 }
 
 ::selection {
-  background: rgba(84, 187, 255, 0.24);
-  color: #f8fbff;
+  background: rgba(189, 245, 0, 0.32);
+  color: #131313;
 }
 
 a,
@@ -74,108 +61,30 @@ summary::-webkit-details-marker {
   display: none;
 }
 
-.section-shell {
-  position: relative;
-}
-
-.section-shell::before {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  top: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(108, 146, 255, 0.22), transparent);
-}
-
-.glass-panel {
-  background:
-    linear-gradient(180deg, rgba(20, 27, 45, 0.9), rgba(10, 13, 23, 0.86));
-  border: 1px solid var(--line);
-  box-shadow:
-    0 30px 80px rgba(4, 8, 20, 0.54),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(18px);
-}
-
-.laser-frame {
-  position: relative;
-  overflow: hidden;
-}
-
-.laser-frame::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(110, 247, 230, 0.28), rgba(165, 109, 255, 0.4), rgba(84, 187, 255, 0.38));
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-.arena-scan::after {
-  content: "";
-  position: absolute;
-  inset: -20%;
-  background: linear-gradient(90deg, transparent 34%, rgba(84, 187, 255, 0.2) 48%, transparent 62%);
-  transform: translateX(-50%);
-  animation: scan 5.8s linear infinite;
-  pointer-events: none;
-}
-
-.float-slow {
-  animation: float 6.8s ease-in-out infinite;
-}
-
-.float-delay {
-  animation: float 7.6s ease-in-out infinite;
-  animation-delay: 1.3s;
-}
-
-.pulse-ring {
-  animation: pulseRing 3.2s ease-in-out infinite;
-}
-
 .faq-item[open] .faq-chevron {
   transform: rotate(180deg);
 }
 
 .faq-item[open] {
-  border-color: var(--line-strong);
-  background: rgba(15, 20, 36, 0.92);
+  border-color: var(--primary);
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
+.neon-glow-green {
+  box-shadow: 0 0 15px rgba(189, 245, 0, 0.4);
 }
 
-@keyframes pulseRing {
-  0%,
-  100% {
-    opacity: 0.42;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.03);
-  }
+.neon-border-green {
+  border: 1px solid var(--primary);
 }
 
-@keyframes scan {
-  0% {
-    transform: translateX(-65%);
-  }
-  100% {
-    transform: translateX(65%);
-  }
+.neon-border-yellow {
+  border: 1px solid var(--secondary);
+}
+
+.neon-border-pink {
+  border: 1px solid var(--accent);
+}
+
+.gradient-overlay {
+  background: linear-gradient(0deg, rgba(19, 19, 19, 1) 0%, rgba(19, 19, 19, 0.4) 100%);
 }
