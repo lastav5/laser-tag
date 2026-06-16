@@ -31,7 +31,6 @@ export const leadSchema = z.object({
   message: z
     .string()
     .trim()
-    .min(12, "ספרו לנו קצת יותר על האירוע כדי שנוכל להתאים הצעה.")
     .max(1200, "ההודעה ארוכה מדי."),
 });
 
