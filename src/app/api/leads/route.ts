@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
 import { leadSchema } from "@/lib/lead-schema";
-import {
-  LeadConfigError,
-  createLeadWithNotification,
-} from "@/lib/lead-service";
+import { LeadConfigError, createLead } from "@/lib/lead-service";
 
 export const runtime = "nodejs";
 
@@ -32,17 +29,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const result = await createLeadWithNotification(parsed.data);
-
-    if (result.notificationFailed) {
-      return NextResponse.json(
-        {
-          message:
-            "הפרטים נקלטו בהצלחה. נחזור אליכם בהקדם, גם אם ההתראה הפנימית התעכבה.",
-        },
-        { status: 201 },
-      );
-    }
+    await createLead(parsed.data);
 
     return NextResponse.json(
       {
@@ -60,7 +47,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         message:
-          "כרגע אי אפשר לקלוט את הפנייה באתר. בדקו שהחיבור ל-Supabase ול-Resend מוגדרים.",
+          "כרגע אי אפשר לקלוט את הפנייה באתר. בדקו שהחיבור ל-Supabase מוגדר.",
       },
       { status: 500 },
     );

@@ -42,3 +42,6 @@ next-env.d.ts
 
 # local Codex state
 .codex-home/
+
+# Supabase local state
+supabase/.temp/

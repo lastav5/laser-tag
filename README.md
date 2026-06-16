@@ -20,9 +20,6 @@ npm run dev
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 SUPABASE_URL=...
 SUPABASE_SERVICE_ROLE_KEY=...
-RESEND_API_KEY=...
-RESEND_FROM_EMAIL=Pulse Arena <onboarding@resend.dev>
-LEAD_NOTIFICATION_EMAIL=...
 ```
 
 3. הריצו את המיגרציה של Supabase מתוך [supabase/migrations/20260616_create_leads.sql](/Users/stav/Projects/LaserTag/supabase/migrations/20260616_create_leads.sql:1).
@@ -30,8 +27,7 @@ LEAD_NOTIFICATION_EMAIL=...
 ה-API של הלידים נמצא ב-`src/app/api/leads/route.ts`:
 
 - שומר כל ליד לטבלת `leads`
-- שולח התראת אימייל דרך Resend
-- מסמן בטבלה אם התראת האימייל נשלחה או נכשלה
+- משאיר את כל האוטומציה שלאחר ההכנסה לטריגרים / פונקציות בתוך Supabase
 
 ## נכסים ויזואליים
 
